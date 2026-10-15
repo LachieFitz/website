@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Lachie Fitzgibbon - Mechatronics + Physics</title>
+   <meta name="description" content="lachiefitzgibbles">
+
+   <style>
+      body {
+         background-color: rgb(62, 164, 223);
+         color: white;
+         font-family: monospace;
+         font-size: 16px;
+         margin: 0;
+         padding: 0 16px;
+         line-height: 1.5;
+      }
+      a { color: yellow; }
+      a:visited { color: cornsilk; }
+
+      header, main, footer {
+         max-width: 1000px;
+         margin: 0 auto;
+      }
+
+      header { text-align: center; }
+
+      h1, h2, h3 { font-family: 'Times New Roman', Times, serif; font-weight: bold; }
+
+      h1 {
+         color: white;
+         font-size: clamp(40px, 10vw, 80px);   /* big, but shrinks on phones */
+         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+         margin: 24px 0 0;
+      }
+      .tagline {
+         color: cornsilk;
+         font-size: clamp(20px, 4vw, 40px);
+         margin: 0;
+      }
+      .subtag { color: cornsilk; font-size: 18px; }
+
+      .construction {
+         background: repeating-linear-gradient(45deg, yellow 0 20px, black 20px 40px);
+         color: black;
+         font-weight: bold;
+         padding: 4px;
+      }
+      .construction span { background: yellow; padding: 0 8px; }
+
+      nav {
+         margin: 16px 0;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 4px 16px;
+      }
+
+      hr { border: 1px solid white; }
+
+      h2 {
+         color: cornsilk;
+         font-size: 32px;
+         text-align: center;
+      }
+      h3 { font-size: 22px; margin-bottom: 0; }
+
+      button {
+         font-family: monospace;
+         font-size: 14px;
+         cursor: pointer;
+      }
+
+
+      .about { display: flow-root; }
+      .about .headshot {
+         width: 520px;
+         max-width: 100%;
+         float: left;
+         margin: 0 24px 16px 0;
+      }
+      .about > div > p:first-child { margin-top: 0; }
+      .about .interests { clear: left; list-style: "- "; }
+
+
+      .about .tags {
+         clear: left;
+         display: flex;
+         flex-wrap: wrap;
+         gap: 6px;
+      }
+      .about .tags span {
+         flex: 1 1 auto;
+         text-align: center;
+         margin: 0;
+         padding: 4px 8px;
+         font-size: 14px;
+      }
+
+      .filters { text-align: center; margin-bottom: 16px; }
+      .filters button.on { background: yellow; }
+
+      .grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+         gap: 16px;
+      }
+      .card {
+         display: block;
+         border: 3px outset white;
+         background: rgba(0,0,0,0.25);
+         padding: 8px;
+         text-decoration: none;
+         color: white !important;
+      }
+      .card:hover, .card:focus { border-style: inset; background: rgba(0,0,0,0.45); }
+      .card img, .card video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+      .card strong { display: block; font-size: 17px; color: yellow; }
+      .card small { color: cornsilk; }
+      .card.hidden { display: none; }
+
+      .tags span {
+         display: inline-block;
+         border: 1px solid cornsilk;
+         padding: 0 4px;
+         margin: 2px 2px 0 0;
+         font-size: 12px;
+      }
+
+      /* ---------- full project write-ups ---------- */
+      .project {
+         border-top: 2px dashed white;
+         padding: 16px 0;
+         scroll-margin-top: 16px;
+      }
+      .project:target { background: rgba(255,255,0,0.12); }  /* highlights the one you clicked */
+      .project .meta { color: cornsilk; margin-top: 0; }
+      .project .pics {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+         gap: 8px;
+      }
+      .project .pics img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: zoom-in; }
+      .project .pics video { width: 100%; aspect-ratio: 1; object-fit: cover; background: black; }
+
+      /* class="wide": one photo/video/YouTube that spans the whole row */
+      .pics .wide { grid-column: 1 / -1; aspect-ratio: 16 / 9 !important; object-fit: contain; }
+      .pics iframe.wide { width: 100%; height: auto; border: 3px inset white; }
+
+      /* <div class="pair">: two videos/photos side by side, each half the row
+         <div class="trio">: three side by side, each a third of the row
+         both stack on phones */
+      .pair, .trio {
+         grid-column: 1 / -1;
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 8px;
+         margin-top: 8px;
+      }
+      .trio { grid-template-columns: 1fr 1fr 1fr; }
+      .project .pair > *, .project .trio > * { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: black; }
+      .pair img, .trio img { cursor: zoom-in; }
+      @media (max-width: 500px) { .pair, .trio { grid-template-columns: 1fr; } }
+      .back { font-size: 14px; }
+
+      /* ---------- gallery ---------- */
+      .gallery {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+         gap: 8px;
+      }
+      .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: zoom-in; }
+
+      /* when a photo is missing, show where it should go */
+      .missing {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         border: 2px dashed cornsilk;
+         color: cornsilk;
+         font-size: 12px;
+         padding: 4px;
+         aspect-ratio: 4 / 3;
+         word-break: break-all;
+      }
+
+      /* ---------- click-to-enlarge popup ---------- */
+      dialog {
+         background: black;
+         color: white;
+         border: 3px outset white;
+         max-width: 95vw;
+         padding: 8px;
+      }
+      dialog::backdrop { background: rgba(0,0,0,0.8); }
+      dialog img { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+      dialog p { text-align: center; margin: 8px 0 0; }
+
+      /* ---------- footer ---------- */
+      footer {
+         text-align: center;
+         padding: 24px 0 48px;
+         font-size: 14px;
+      }
+      .counter {
+         display: inline-block;
+         background: black;
+         color: lime;
+         padding: 2px 8px;
+         letter-spacing: 3px;
+         border: 2px inset grey;
+      }
+
+      /* ---------- WOLFRAM SIDES: cellular automata printing down the empty side margins ---------- */
+      .automaton {
+         position: fixed;
+         top: 0;
+         z-index: -1;
+         image-rendering: pixelated;   /* keep the cells as crisp chunky squares */
+         pointer-events: none;
+      }
+      #ca-left { left: 0; }
+      #ca-right { right: 0; }
+      /* little label saying which rule is currently drawing */
+      #rule-label {
+         position: fixed;
+         left: 8px;
+         bottom: 8px;
+         background: black;
+         color: lime;
+         padding: 2px 8px;
+         font-size: 12px;
+         border: 2px inset grey;
+      }
+      body.employer .automaton, body.employer #rule-label { display: none; }
+
+      /* ---------- EMPLOYER MODE: what it looks like if I tried ---------- */
+      body.employer {
+         background: #f7f7f5;
+         color: #222;
+         font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      body.employer h1 { color: #111; text-shadow: none; }
+      body.employer h1, body.employer h2, body.employer h3 { font-family: inherit; }
+      body.employer .tagline, body.employer .subtag, body.employer h2,
+      body.employer .card small, body.employer .project .meta { color: #555; }
+      body.employer a, body.employer a:visited { color: #6a0dad; }
+      body.employer hr { border: 0; border-top: 1px solid #ddd; }
+      body.employer .construction { display: none; }
+      body.employer .card {
+         border: 1px solid #ddd;
+         border-radius: 8px;
+         background: white;
+         color: #222 !important;
+         box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      body.employer .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+      body.employer .card strong { color: #222; }
+      body.employer .tags span { border-color: #ccc; border-radius: 4px; color: #555; }
+      body.employer .project { border-top: 1px solid #ddd; }
+      body.employer .missing { border-color: #bbb; color: #888; }
+      body.employer .counter { display: none; }
+   </style>
+</head>
+
+<body>
+
+   <!-- the Wolfram automata in the side margins get drawn in these (see script at the bottom) -->
+   <canvas class="automaton" id="ca-left" aria-hidden="true"></canvas>
+   <canvas class="automaton" id="ca-right" aria-hidden="true"></canvas>
+   <div id="rule-label" aria-hidden="true"></div>
+
+
+   <header id="top">
+      <h1>Lachie Fitzgibbon</h1>
+      <p class="tagline">Mechatronics Engineer + Physicist</p>
+      <p class="subtag">Good at making robots and doing maths, less so at web design.</p>
+
+      <nav>
+         <a href="#about">about</a>
+         <a href="#projects">projects</a>
+         <a href="#gallery">gallery</a>
+         <a href="#contact">contact</a>
+         <a href="cv.pdf">CV (pdf)</a>
+         <button id="mode-btn" type="button">Employer Mode</button>
+      </nav>
+      <hr>
+   </header>
+
+   <main>
+
+      <!-- ================= ABOUT ================= -->
+      <section id="about">
+         <h2>about me</h2>
+         <div class="about">
+            <img class="headshot" src="images/me.JPEG" alt="Photo of Lachie">
+            <div>
+               <p>
+                  Currently pursuing concurrent Bachelor of Science (Theoretical Physics) and Bachelor of Mechanical Engineering (Honours) at Adelaide University.
+                  I have always loved understanding why systems are the way they are - and eternal curiosity eventually leads to Physics, a field I find endlessly 
+                  fascinating. But the only thing that rivals my love of knowing why something is the way it is, is building something and seeing that evidence first hand.
+                  Mechatronics is such an interesting intersection of these theoretical concepts applied in novel environments. I am always looking to learn something and am  
+                  particularly interested in areas of:
+               </p>
+               <!-- class="interests" makes this list always start below the photo -->
+               <ul class="interests">
+                  <li>Physical Intelligence and Robot Learning Methods</li>
+                  <li>Space Robotics</li>
+                  <li>Quantum Computing</li>
+                  <li>Limits of Formalised Logic</li>
+               </ul>
+               <p>
+                  Currently: Technical Director of the Adelaide University Rover Team.
+               </p>
+               <p class="tags">
+                  <span>CAD / 3D Simulation</span><span>PCB Design</span><span>Python</span><span>C / Embedded Firmware</span><span>Prototyping + Testing</span>
+                  <span>Team Leadership</span><span>Project Management</span><span>Systems Engineering</span><span>Larping</span>
+               </p>
+            </div>
+         </div>
+      </section>
+
+      <hr>
+
+      <!-- ================= PROJECT BOXES ================= -->
+      <section id="projects">
+         <h2>projects</h2>
+
+         <!-- buttons are made automatically from the data-skills on each card -->
+         <div class="filters" id="filters"></div>
+
+         <div class="grid" id="grid">
+            <a class="card" href="#rover-td" data-skills="leadership electrical mechanical software">
+               <img src="images/aura.JPG" alt="Rover team">
+               <strong>Technical Director</strong>
+               <small>Adelaide Rover Team, Yr 3</small>
+            </a>
+            <a class="card" href="#gripper" data-skills="electrical mechanical software">
+               <img src="images/gripperlive.PNG" alt="Soft robotic gripper">
+               <strong>Soft Robotics End-Effector</strong>
+               <small>Adelaide Rover Team, Yr 2</small>
+            </a>
+            <a class="card" href="#warman" data-skills="leadership electrical mechanical">
+               <img src="images/warmanteam.PNG" alt="JANK-E robot">
+               <strong>Warman: JANK-E</strong>
+               <small>1st local, 7th international</small>
+            </a>
+            <a class="card" href="#clock" data-skills="software electrical mechanical">
+               <!-- example: a silent looping clip instead of a photo on the card -->
+               <img src="images/clock.JPEG" alt="Rover differential suspension">
+               <strong>Location Tracking Clock</strong>
+               <small>Personal project</small>
+            </a>
+            <a class="card" href="#inv2urdf" data-skills="software">
+               <img src="images/urdf.png" alt="Inventor to URDF plugin">
+               <strong>Inv2Urdf</strong>
+               <small>Inventor → URDF exporter</small>
+            </a>
+            <a class="card" href="#differential" data-skills="mechanical">
+               <img src="images/romulus.JPEG" alt="Rover differential suspension">
+               <strong>Differential Suspension</strong>
+               <small>Adelaide Rover Team, Yr 1</small>
+            </a>
+         </div>
+      </section>
+
+      <!-- ================= FULL WRITE-UPS ================= -->
+
+      <article class="project" id="rover-td">
+         <h3>Technical Director (Rover, Yr 3)</h3>
+         <p class="meta">2026-2027 · Adelaide University Rover Team</p>
+         <p>
+            Managed 41 technical members and the 3 discipline leads (software, electrical,
+            mechanical). Responsible for the technical development of every subsystem, including
+            testing, validation and integration, upskilling new members, and setting up the
+            team's systems-engineering approach.
+         </p>
+         <ul>
+            <li>Assisted in the design and development of the Water Extraction Payload: custom PCB for motor + heating
+                control (CAN, STM32) and a 2-axis linear rail system for precise excavation.</li>
+            <li>Improved the drive and comms of the Mini-Rover.</li>
+            <li>Set up new ~800 MHz communication systems.</li>
+            <li>Built permanent motor / robotic-arm test benches (Raspberry Pi + Docker,
+                wall-mounted controllers, safety circuitry) and used them to teach new members.</li>
+            <li>Wrote a custom plugin to export Inventor assemblies to URDF (<a href="#inv2urdf">Inv2Urdf</a>).</li>
+            <li>Maintained the full-rover CAD, including payloads.</li>
+            <li>Co-wrote the CDR and SAR engineering documents.</li>
+         </ul>
+         <p>
+            Big focus of the year: simplifying the system (moving to STM32, using widely supported
+            hardware and software) so knowledge actually gets passed on.
+         </p>
+         <div class="pics">
+            <img src="images/waterextproto.JPEG" alt="Water extraction payload in prototyping phase. (yes i did rip apart my 3D printer.)">
+            <img src="images/waterextractionpcb.PNG" alt="Water extraction payload in prototyping phase. (yes i did rip apart my 3D printer.)">
+            <img src="images/rover_october26.jpg" alt="Rover during October testing">
+            <img src="images/testbench.JPEG" alt="Testing bench setup in our workshop">
+            <img src="images/me+jacob.JPEG" alt="Me and my project lead Jacob.">
+            <video src="images/minidrive-web.mp4" controls preload="metadata" title="Mini Rover driving in all its glory again!"></video>
+         </div>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <article class="project" id="gripper">
+         <h3>Soft Robotics End-Effector (Rover, Yr 2)</h3>
+         <p class="meta">2025-2026 · Adelaide University Rover Team</p>
+         <p>
+            Retrained from mechanical to electrical. Worked on the robotic arm's end effector across
+            mechanical, electrical and firmware, and pivoted to a soft-robotics / continuum design:
+            three tendon-driven fingers with deformable TPU tips for general-purpose grasping.
+         </p>
+         <ul>
+            <li>Designed dynamic 3D assemblies of the gripper.</li>
+            <li>Prototyped, printed and assembled each iteration.</li>
+            <li>Designed the control PCB in Altium: voltage regulation, two motor drivers, CAN,
+                dsPIC microcontroller. Used at competition.</li>
+            <li>Wrote the firmware in C, using limit switches and current sensing to detect grip pressure.</li>
+            <li>Wrote the gripper's ROS node (my first real ROS / C++).</li>
+         </ul>
+         <div class="pics">
+            <img src="images/grippercad2.JPEG" alt="Gripper CAD model">
+            <img src="images/gripperonarm.JPEG" alt="Gripper mounted on the ARM!">
+            <img src="images/workingongripper2.JPEG" alt="Working on the gripper actuation">
+            <img src="images/gripperpcb.JPEG" alt="Gripper PCB">
+            <img src="images/gripperpcbirl.JPEG" alt="Gripper PCB again!">
+         </div>
+         <p>
+            Unfortunately due to the arm not being ready for competition the gripper was not able to be utilised to its full extent.
+            See the gripper in action:
+         </p>
+         <div class="pair">
+            <video src="images/grippy.MOV" autoplay muted loop playsinline></video>
+            <video src="images/gripper open.MOV" autoplay muted loop playsinline></video>
+         </div>
+         <p>
+            In the two weeks before competition, I also designed and built the whole electrical
+            system for the "Mini Rover" payload: Raspberry Pi 4, 4 DC drive motors, servo camera
+            mount, and the E-stop and warning-light safety circuitry.
+         </p>
+         <div class="trio">
+            <img src="images/miniroveronfilm.JPEG" alt="Me working on the mini rover at ARCh 2026">
+            <img src="images/mini+heather.JPG" alt="Mini rover turning on for the first time">
+            <img src="images/soldermini.JPEG" alt="Soldering in high pressure environments">
+         </div>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <article class="project" id="warman">
+         <h3>Warman Design &amp; Build: JANK-E</h3>
+         <p class="meta">2025 · Team lead, team of 5 · 1st place local, 7th international</p>
+         <p>
+            An omnidirectional robot that collects balls, drives up and down a rotating ramp, and
+            drops the balls in an end zone. First time designing, building and manufacturing a
+            whole system from scratch, then getting to redesign it for internationals.
+            I wrote all of the firmware.
+         </p>
+         <ul>
+            <li>Chassis: MDF → carbon fibre</li>
+            <li>Scoop: rack and pinion → 2-DoF robotic arm</li>
+            <li>Electronics: protoboard → custom PCB</li>
+            <li>Perfect score on our first international run.</li>
+         </ul>
+         <p>
+            Also learnt a lot about leadership and tricky team dynamics, and exactly how much can
+            be achieved at 10pm the night before a deadline.
+         </p>
+         <div class="pics">
+            <!-- example: a big video with a play button, full width -->
+            <video class="wide" src="images/jankeperfectrun32-web.mp4" controls preload="metadata"></video>
+         </div>
+         <div class="pics">
+            <img src="images/jankewinnerteam.JPEG" alt="Winner winner chicken dinner">
+            <img src="images/warmanarm1.JPEG" alt="The start of the arm development">
+            <img src="images/jankewinner.JPEG" alt="JANK-E local">
+            <img src="images/warmanpcb.JPEG" alt="JANK-E international">
+            <img src="images/warmanworkshop.JPEG" alt="Too many late nights on this one">
+         </div>
+
+            <!-- example: two videos side by side, half the row each -->
+            <div class="pair">
+               <video src="images/jankefirstdrive-web.mp4" controls preload="metadata" title="JANK-E's first drive"></video>
+               <video src="images/janke-perfectrun1-web.mp4" controls preload="metadata" title="Perfect run"></video>
+         </div>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <article class="project" id="clock">
+         <h3>Location Tracking Clock</h3>
+         <p class="meta">2026 · Personal project</p>
+         <p>
+            A clock with 5 faces whose mechanical hands point to where each of my family members
+            currently is. Runs on a Raspberry Pi at home with a custom prototype circuit and Python
+            software built on the PyiCloud library.
+         </p>
+         <p class="tags"><span>mechanical prototyping</span><span>electrical prototyping</span><span>Python</span><span>integration</span></p>
+         <div class="pics">
+            <img src="images/clock.JPEG" alt="The clock v2 mounted on the shelf at home.">
+            <img src="images/earlyclock.JPEG" alt="Clock v1">
+            <img src="images/locationcode.JPEG" alt="Software successes.">
+         </div>
+         <p>Code: <a href="https://github.com/LachieFitz/location_clock">GitHub repo</a></p>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <article class="project" id="inv2urdf">
+         <h3>Inv2Urdf</h3>
+         <p class="meta">2026 · Software tool</p>
+         <p>
+            A plugin that exports Autodesk Inventor assemblies to URDF
+            models so the rover CAD can be used directly in ROS.
+         </p>
+         <p>Code: <a href="https://github.com/LachieFitz/Inv2URDF-2026">GitHub repo</a></p>
+         <div class="pics">
+            <img src="images/urdf.png" alt="Inventor model with the UCS created for the URDF export.">
+         </div>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <article class="project" id="differential">
+         <h3>Differential Suspension for Lunar Rover (Rover, Yr 1)</h3>
+         <p class="meta">2024-2025 · Adelaide University Rover Team · mechanical</p>
+         <p>
+            My first year on the team. Designed an updated differential to keep the chassis
+            laterally balanced and constrain the motion of each side of the suspension.
+         </p>
+         <ul>
+            <li>CAD in Inventor: 2D drawing standards, constraining multi-part dynamic assemblies.</li>
+            <li>3D printing and prototyping.</li>
+            <li>Mechanical assembly and maintenance on the main rover before competition.</li>
+            <li>Field team member at competition.</li>
+         </ul>
+         <div class="pics">
+            <video class="wide" src="images/diffcad.MOV" autoplay muted loop playsinline></video>
+         </div>
+         <div class="trio">
+            <img src="images/diffinhand.JPEG" alt="My first manufactured part">
+            <img src="images/romulus.JPEG" alt="The first rover iteration I got to work on">
+            <img src="images/romulus2.JPEG" alt="Romulus">
+         </div>
+         <p class="back"><a href="#projects">↑ back to projects</a></p>
+      </article>
+
+      <hr>
+
+      <!-- ================= GALLERY ================= -->
+      <section id="gallery">
+         <h2>gallery</h2>
+         <p style="text-align:center">random other photos of things. click to enlarge.</p>
+         <div class="gallery">
+            <img src="images/brokenregulators.JPEG" alt="Every component I broke while making the mini rover.">
+            <img src="images/footy.JPG" alt="Thought I should showcase my footy skills">
+            <img src="images/grumpt.JPG" alt="Looking lovingly at the rover">
+            <img src="images/smilingpdr.JPG" alt="Sometimes I enjoy myself">
+            <img src="images/drum1.JPEG" alt="Also love playing in bands">
+            <img src="images/drum2.JPEG" alt="I regularly perform at venues around Adelaide">
+         </div>
+      </section>
+
+      <hr>
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" style="text-align:center">
+         <h2>contact</h2>
+         <p>
+            email: <a href="lachlan.fitzgibbon@icloud.com">lachlan.fitzgibbon@icloud.com</a><br>
+            linkedin: <a href=""></a>fuck linkedin</a><br>
+            github: <a href="https://github.com/LachieFitz">GitHub</a><br>
+            CV: <a href="cv.pdf">cv.pdf</a>
+         </p>
+      </section>
+
+   </main>
+
+   <footer>
+      <hr>
+      <p>
+         you have visited this page <span class="counter" id="counter">000000</span> times
+         <br><small>(counter only counts you. it's a website, not a surveillance system.)</small>
+      </p>
+      <p>
+         hand-made with HTML and spite · last updated <span id="updated"></span><br>
+         <a href="#top">↑ back to top</a>
+      </p>
+   </footer>
+
+   <!-- popup used by the click-to-enlarge photos -->
+   <dialog id="viewer">
+      <img id="viewer-img" alt="">
+      <p id="viewer-caption"></p>
+      <p><button type="button" id="viewer-close">close [esc]</button></p>
+   </dialog>
+
+   <script>
+      // ---- missing photos/videos: show the filename it's looking for instead of a broken icon ----
+      function showMissing(el) {
+         var box = document.createElement('div');
+         box.className = ('missing ' + el.className).trim();
+         box.textContent = (el.tagName === 'VIDEO' ? 'video' : 'photo') + ' goes here: ' + el.getAttribute('src');
+         el.replaceWith(box);
+      }
+      document.querySelectorAll('img').forEach(function (img) {
+         if (img.closest('dialog')) return;
+         if (img.complete && img.naturalWidth === 0) showMissing(img);
+         else img.addEventListener('error', function () { showMissing(img); });
+      });
+      document.querySelectorAll('video').forEach(function (vid) {
+         if (vid.error) showMissing(vid);
+         else vid.addEventListener('error', function () { showMissing(vid); });
+      });
+
+      // ---- click a photo to enlarge it ----
+      var viewer = document.getElementById('viewer');
+      document.addEventListener('click', function (e) {
+         if (e.target.tagName !== 'IMG' || !e.target.closest('.pics, .gallery, .pair, .trio')) return;
+         document.getElementById('viewer-img').src = e.target.src;
+         document.getElementById('viewer-caption').textContent = e.target.alt;
+         viewer.showModal();
+      });
+      document.getElementById('viewer-close').onclick = function () { viewer.close(); };
+      viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+
+      // ---- skill filter buttons, built from the data-skills on each card ----
+      var cards = document.querySelectorAll('.card');
+      var skills = ['all'];
+      cards.forEach(function (c) {
+         c.dataset.skills.split(' ').forEach(function (s) {
+            if (skills.indexOf(s) === -1) skills.push(s);
+         });
+      });
+      var filters = document.getElementById('filters');
+      skills.forEach(function (skill) {
+         var b = document.createElement('button');
+         b.type = 'button';
+         b.textContent = skill;
+         if (skill === 'all') b.className = 'on';
+         b.onclick = function () {
+            filters.querySelectorAll('button').forEach(function (x) { x.className = ''; });
+            b.className = 'on';
+            cards.forEach(function (c) {
+               var match = skill === 'all' || c.dataset.skills.split(' ').indexOf(skill) !== -1;
+               c.classList.toggle('hidden', !match);
+            });
+         };
+         filters.appendChild(b);
+      });
+
+      // ---- Wolfram elementary cellular automata down the side margins ----
+      // each row is worked out from the row above using an 8-entry rule (the rule number in binary).
+      // both sides draw one row at a time down the screen, then move on to the next rule in the list.
+      (function () {
+         var RULES = [30, 90, 110, 45, 73, 150];   // change these to try other rules (0-255)
+         var CELL = 8;                              // pixel size of one cell
+         var CONTENT = 1000;                        // width of the page content in the middle
+         var strips = [document.getElementById('ca-left'), document.getElementById('ca-right')];
+         var label = document.getElementById('rule-label');
+         var ruleIndex = -1, rule, cols, rows, y, state;
+
+         function startRule() {
+            ruleIndex = (ruleIndex + 1) % RULES.length;
+            rule = RULES[ruleIndex];
+            var gutter = (innerWidth - CONTENT) / 2 - 8;
+            cols = Math.floor(gutter / CELL);
+            rows = Math.ceil(innerHeight / CELL);
+            var show = cols >= 6;                   // no room on small screens, so don't bother
+            label.style.display = show ? '' : 'none';
+            label.textContent = 'rule ' + rule;
+            state = strips.map(function (c) {
+               c.style.display = show ? '' : 'none';
+               c.width = Math.max(cols, 1);
+               c.height = rows;
+               c.style.width = cols * CELL + 'px';
+               c.style.height = rows * CELL + 'px';
+               var ctx = c.getContext('2d');
+               ctx.fillStyle = 'rgb(99, 16, 155)';
+               ctx.fillRect(0, 0, cols, rows);
+               var row = [];
+               for (var i = 0; i < cols; i++) row.push(0);
+               row[Math.floor(cols / 2)] = 1;        // start from one cell in the middle of each strip
+               return { ctx: ctx, row: row };
+            });
+            y = 0;
+            drawRow();
+         }
+         function drawRow() {
+            state.forEach(function (st) {
+               st.ctx.fillStyle = 'rgb(150, 60, 210)';
+               for (var x = 0; x < cols; x++) if (st.row[x]) st.ctx.fillRect(x, y, 1, 1);
+            });
+         }
+         function nextRow() {
+            state.forEach(function (st) {
+               var next = [];
+               for (var x = 0; x < cols; x++) {
+                  var l = st.row[(x - 1 + cols) % cols], c = st.row[x], r = st.row[(x + 1) % cols];
+                  next.push((rule >> (l * 4 + c * 2 + r)) & 1);   // look up this neighbourhood in the rule number
+               }
+               st.row = next;
+            });
+         }
+
+         startRule();
+         var lastW = innerWidth;   // only restart if the width changes (phones resize when you scroll)
+         addEventListener('resize', function () {
+            if (innerWidth !== lastW) { lastW = innerWidth; ruleIndex--; startRule(); }
+         });
+         if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            for (y = 1; y < rows; y++) { nextRow(); drawRow(); }   // just draw the whole thing once
+            return;
+         }
+         setInterval(function () {
+            y++;
+            if (y >= rows + 25) { startRule(); return; }   // ~3s pause on the finished picture
+            if (y >= rows) return;
+            nextRow();
+            drawRow();
+         }, 120);
+      })();
+
+      // ---- employer mode toggle (remembered between visits) ----
+      var modeBtn = document.getElementById('mode-btn');
+      function setMode(on) {
+         document.body.classList.toggle('employer', on);
+         modeBtn.textContent = on ? 'Fun Mode' : 'Employer Mode';
+         try { localStorage.setItem('employer', on ? '1' : ''); } catch (e) {}
+      }
+      modeBtn.onclick = function () { setMode(!document.body.classList.contains('employer')); };
+      try { if (localStorage.getItem('employer')) setMode(true); } catch (e) {}
+
+      // ---- retro visit counter (just for this browser) ----
+      try {
+         var n = Number(localStorage.getItem('visits') || 0) + 1;
+         localStorage.setItem('visits', n);
+         document.getElementById('counter').textContent = String(n).padStart(6, '0');
+      } catch (e) {}
+
+      // ---- last updated date (from the file itself) ----
+      document.getElementById('updated').textContent =
+         new Date(document.lastModified).toLocaleDateString('en-AU');
+   </script>
+
+</body>
+</html>
