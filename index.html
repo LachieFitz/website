@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Lachie Fitzgibbon - Mechatronics + Physics</title>
    <meta name="description" content="lachiefitzgibbles">
-   <link rel="stylesheet" href="style.css?v=3">
+   <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <!--
@@ -36,8 +36,12 @@
        if a page with that id exists it becomes a link. if it doesn't, it becomes a pinkish
        "not written yet" link and gets listed under "wanted pages" on the wiki tab.
 
-   CHANGED style.css or site.js? bump the ?v=3 numbers in the <head> and at the bottom
+   CHANGED style.css or site.js? bump the ?v=4 numbers in the <head> and at the bottom
        so browsers grab the new version instead of an old saved copy.
+
+   PHOTOS: <img loading="lazy" src="..." alt="caption">  (lazy = only downloads when its page is opened)
+   VIDEOS: <video src="..." controls preload="metadata" title="caption"></video>
+           looping silent clip: <video src="..." data-autoplay muted loop playsinline preload="none"></video>
 
    NEW WIKI NOTE: copy one of the <section class="page note"> blocks in the WIKI part.
    ===================================================================
@@ -128,9 +132,6 @@
 
       <!-- ---------- individual project pages ---------- -->
 
-      <!-- ============ SPOTS FOR NEW PROJECTS: fill these in ============
-           change the id (that's the url, e.g. #my-robot), data-title, data-skills,
-           data-card-img (photo in images/), data-card-sub, the h2, meta line and write-up. -->
 
       <article class="page project" id="rover-td"
          data-title="Technical Director" data-stage="active" data-updates="off"
@@ -147,7 +148,7 @@
          </p>
          <ul>
             <li>Assisted in the design and development of the Water Extraction Payload: custom PCB for motor + heating
-                control CAN, STM32 and a 2-axis linear rail system for precise excavation.</li>
+                control (CAN, STM32) and a 2-axis linear rail system for precise excavation.</li>
             <li>Built permanent motor / robotic-arm test benches (Raspberry Pi + Docker,
                 wall-mounted controllers, safety circuitry) and used them to teach new members.</li>
             <li>Assisted in the testing, assembly and PID tuning of 5DOF robotic arm.</li>
@@ -155,26 +156,26 @@
             <li>Set up new ~800 MHz communication systems.</li>
             <li>Wrote a custom plugin to export Inventor assemblies to URDF ([[inv2urdf|Inv2Urdf]]).</li>
             <li>Developed full-rover CAD models, including payloads (some assemblies 200+ parts).</li>
-            <li>Impoved documentation, methodology and standards.</li>
+            <li>Improved documentation, methodology and standards.</li>
             <li>Co-wrote the CDR and SAR engineering documents.</li>
          </ul>
          <p>
             Big focus of the year: simplifying the system (moving to STM32, using widely supported
-            hardware and software) to remove barriers to prototypings and development. A strong focus on rapid verifiable prototyping 
-            allowed systems to be developed and integrate earlier then ever before. Strong working relationship with the workshop was also developed
-            though weekly meetings, helping faciliate earlier manufacturing deadlines.
+            hardware and software) to remove barriers to prototyping and development. A strong focus on rapid verifiable prototyping 
+            allowed systems to be developed and integrate earlier than ever before. Strong working relationship with the workshop was also developed
+            through weekly meetings, helping facilitate earlier manufacturing deadlines.
          </p>
          <div class="pics">
-            <img src="images/waterextproto.JPEG" alt="Water extraction payload in prototyping phase. (yes i did rip apart my 3D printer.)">
-            <img src="images/waterextractionpcb.PNG" alt="Water extraction payload PCB.">
-            <img src="images/rover_october26.jpg" alt="Rover during October testing">
-            <img src="images/testbench.JPEG" alt="Testing bench setup in our workshop">
-            <img src="images/me+jacob.JPEG" alt="Me and my project lead Jacob.">
+            <img loading="lazy" src="images/waterextproto.JPEG" alt="Water extraction payload in prototyping phase. (yes i did rip apart my 3D printer.)">
+            <img loading="lazy" src="images/waterextractionpcb.PNG" alt="Water extraction payload PCB.">
+            <img loading="lazy" src="images/rover_october26.jpg" alt="Rover during October testing">
+            <img loading="lazy" src="images/testbench.JPEG" alt="Testing bench setup in our workshop">
+            <img loading="lazy" src="images/me+jacob.JPEG" alt="Me and my project lead Jacob.">
             <video src="images/minidrive-web.mp4" controls preload="metadata" title="Mini Rover driving in all its glory again!"></video>
-            <img src="images/15-11-26/roverarmcad.png" alt="CAD model of the rover with robotic arm + mini rover.">
-            <img src="images/15-11-26/roverscoopcad.png" alt="CAD model of the rover with scoop payload">
-            <video src="images/15-11-26/armtest1.MP4" alt="Beginning of arm physical testing">
-            <video src="images/15-11-26/armwhine.MP4" alt="The tuning was not correct here and for you sake I hope the audio is muted for this."></video>
+            <img loading="lazy" src="images/15-11-26/roverarmcad.png" alt="CAD model of the rover with robotic arm + mini rover.">
+            <img loading="lazy" src="images/15-11-26/roverscoopcad.png" alt="CAD model of the rover with scoop payload">
+            <video src="images/15-11-26/armtest1.MP4" controls preload="metadata" playsinline title="Beginning of arm physical testing"></video>
+            <video src="images/15-11-26/armwhine.MP4" controls preload="metadata" playsinline title="The tuning was not correct here and for you sake I hope the audio is muted for this."></video>
          </div>
       </article>
 
@@ -191,31 +192,29 @@
             Currently turns on, needs OS installed and ideating next fun things to do.
          </p>
          <div class="pics">
-            <img src="images/15-11-26/macon.JPEG" alt="Macintosh Colour Classic (1993)">
-            <img src="images/15-11-26/maclogicboard.JPEG" alt="Macintosh logic board">  
-            <img src="images/15-11-26/macsetup.JPEG" alt="Obviously needs the keyboard connected for soft-power start."> 
+            <img loading="lazy" src="images/15-11-26/macon.JPEG" alt="Macintosh Colour Classic (1993)">
+            <img loading="lazy" src="images/15-11-26/maclogicboard.JPEG" alt="Macintosh logic board">  
+            <img loading="lazy" src="images/15-11-26/macsetup.JPEG" alt="Obviously needs the keyboard connected for soft-power start."> 
          </div>
       </article>
 
       <article class="page project" id="adb"
-         data-title="Macintosh ADB-USB keyboard adapter" data-stage="active"
+         data-title="USB-ADB converter" data-stage="active"
          data-skills="electrical"
          data-card-img="images/15-11-26/adbkeyboard.JPEG" data-card-sub="prototyped">
          <p class="crumb"><a href="#projects">projects</a> /</p>
-         <h2>ADB-USB Adapter</h2>
+         <h2>USB-ADB converter</h2>
          <p class="meta">2026 · Personal Project</p>
          <p>
             I have always loved the feel of the classic macintosh keyboard and the only thing stopping me from using it every day is the 
             stupid ADB (Apple Desktop Bus). Luckily someone very kind has written firmware support for translating keyboard singlas from ADB to USB.
             Currently running this firmware on an Arduino Micro.
          </p>
-         <p>
-            //I wanna put a circuit diagram here. its dead simple tho.
-         </p>
+         <!-- TODO: circuit diagram here. its dead simple tho. -->
          <div class="pics">
-            <img src="images/15-11-26/adbkeyboard.JPEG" alt="Keyboard setup">
-            <img src="images/15-11-26/keyboardwiring.JPEG" alt="wiring is kinda jank">
-            <video src="images/15-11-26/typing.MP4" alt="look it works">
+            <img loading="lazy" src="images/15-11-26/adbkeyboard.JPEG" alt="Keyboard setup">
+            <img loading="lazy" src="images/15-11-26/keyboardwiring.JPEG" alt="wiring is kinda jank">
+            <video src="images/15-11-26/typing.MP4" controls preload="metadata" playsinline title="look it works"></video>
          </div>
       </article>
 
@@ -231,13 +230,12 @@
             Currently, signals are there - just not being amplified. I may have fried the power input tho :/.
          </p>
          <div class="pics">
-            <img src="images/omnichords/omniwhole.JPEG" alt="Omnichord internals">
-            <img src="images/omnichords/omniboard.JPEG" alt="Omnichord analogue signal board">
-            <video src="images/omnichords/omnisignal.MP4" alt="Omnichord signals do exist in the system just not playing out loud :/."></video>
+            <img loading="lazy" src="images/omnichords/omniwhole.JPEG" alt="Omnichord internals">
+            <img loading="lazy" src="images/omnichords/omniboard.JPEG" alt="Omnichord analogue signal board">
+            <video src="images/omnichords/omnisignal.MP4" controls preload="metadata" playsinline title="Omnichord signals do exist in the system just not playing out loud :/."></video>
          </div>
       </article>
 
-      <!-- ============ end of new project spots ============ -->
 
       
 
@@ -255,7 +253,7 @@
          </p>
          <p>Code: <a href="https://github.com/LachieFitz/Inv2URDF-2026">GitHub repo</a></p>
          <div class="pics">
-            <img src="images/urdf.png" alt="Inventor model with the UCS created for the URDF export.">
+            <img loading="lazy" src="images/urdf.png" alt="Inventor model with the UCS created for the URDF export.">
          </div>
       </article>
 
@@ -273,9 +271,9 @@
          </p>
          <p class="tags"><span>mechanical prototyping</span><span>electrical prototyping</span><span>Python</span><span>integration</span></p>
          <div class="pics">
-            <img src="images/clock.JPEG" alt="The clock v2 mounted on the shelf at home.">
-            <img src="images/earlyclock.JPEG" alt="Clock v1">
-            <img src="images/locationcode.JPEG" alt="Software successes.">
+            <img loading="lazy" src="images/clock.JPEG" alt="The clock v2 mounted on the shelf at home.">
+            <img loading="lazy" src="images/earlyclock.JPEG" alt="Clock v1">
+            <img loading="lazy" src="images/locationcode.JPEG" alt="Software successes.">
          </div>
          <p>Code: <a href="https://github.com/LachieFitz/location_clock">GitHub repo</a></p>
       </article>
@@ -301,19 +299,19 @@
             <li>Wrote the gripper's ROS node (my first real ROS / C++).</li>
          </ul>
          <div class="pics">
-            <img src="images/grippercad2.JPEG" alt="Gripper CAD model">
-            <img src="images/gripperonarm.JPEG" alt="Gripper mounted on the ARM!">
-            <img src="images/workingongripper2.JPEG" alt="Working on the gripper actuation">
-            <img src="images/gripperpcb.JPEG" alt="Gripper PCB">
-            <img src="images/gripperpcbirl.JPEG" alt="Gripper PCB again!">
+            <img loading="lazy" src="images/grippercad2.JPEG" alt="Gripper CAD model">
+            <img loading="lazy" src="images/gripperonarm.JPEG" alt="Gripper mounted on the ARM!">
+            <img loading="lazy" src="images/workingongripper2.JPEG" alt="Working on the gripper actuation">
+            <img loading="lazy" src="images/gripperpcb.JPEG" alt="Gripper PCB">
+            <img loading="lazy" src="images/gripperpcbirl.JPEG" alt="Gripper PCB again!">
          </div>
          <p>
             Unfortunately due to the arm not being ready for competition the gripper was not able to be utilised to its full extent.
             See the gripper in action:
          </p>
          <div class="pair">
-            <video src="images/grippy.MOV" autoplay muted loop playsinline></video>
-            <video src="images/gripper open.MOV" autoplay muted loop playsinline></video>
+            <video src="images/grippy.MOV" data-autoplay muted loop playsinline preload="none"></video>
+            <video src="images/gripper open.MOV" data-autoplay muted loop playsinline preload="none"></video>
          </div>
          <p>
             In the two weeks before competition, I also designed and built the whole electrical
@@ -321,9 +319,9 @@
             mount, and the E-stop and warning-light safety circuitry.
          </p>
          <div class="trio">
-            <img src="images/miniroveronfilm.JPEG" alt="Me working on the mini rover at ARCh 2026">
-            <img src="images/mini+heather.JPG" alt="Mini rover turning on for the first time">
-            <img src="images/soldermini.JPEG" alt="Soldering in high pressure environments">
+            <img loading="lazy" src="images/miniroveronfilm.JPEG" alt="Me working on the mini rover at ARCh 2026">
+            <img loading="lazy" src="images/mini+heather.JPG" alt="Mini rover turning on for the first time">
+            <img loading="lazy" src="images/soldermini.JPEG" alt="Soldering in high pressure environments">
          </div>
       </article>
 
@@ -354,11 +352,11 @@
             <video class="wide" src="images/jankeperfectrun32-web.mp4" controls preload="metadata"></video>
          </div>
          <div class="pics">
-            <img src="images/jankewinnerteam.JPEG" alt="Winner winner chicken dinner">
-            <img src="images/warmanarm1.JPEG" alt="The start of the arm development">
-            <img src="images/jankewinner.JPEG" alt="JANK-E local">
-            <img src="images/warmanpcb.JPEG" alt="JANK-E international">
-            <img src="images/warmanworkshop.JPEG" alt="Too many late nights on this one">
+            <img loading="lazy" src="images/jankewinnerteam.JPEG" alt="Winner winner chicken dinner">
+            <img loading="lazy" src="images/warmanarm1.JPEG" alt="The start of the arm development">
+            <img loading="lazy" src="images/jankewinner.JPEG" alt="JANK-E local">
+            <img loading="lazy" src="images/warmanpcb.JPEG" alt="JANK-E international">
+            <img loading="lazy" src="images/warmanworkshop.JPEG" alt="Too many late nights on this one">
          </div>
          <div class="pair">
             <video src="images/jankefirstdrive-web.mp4" controls preload="metadata" title="JANK-E's first drive"></video>
@@ -384,12 +382,12 @@
             <li>Field team member at competition.</li>
          </ul>
          <div class="pics">
-            <video class="wide" src="images/diffcad.MOV" autoplay muted loop playsinline></video>
+            <video class="wide" src="images/diffcad.MOV" data-autoplay muted loop playsinline preload="none"></video>
          </div>
          <div class="trio">
-            <img src="images/diffinhand.JPEG" alt="My first manufactured part">
-            <img src="images/romulus.JPEG" alt="The first rover iteration I got to work on">
-            <img src="images/romulus2.JPEG" alt="Romulus">
+            <img loading="lazy" src="images/diffinhand.JPEG" alt="My first manufactured part">
+            <img loading="lazy" src="images/romulus.JPEG" alt="The first rover iteration I got to work on">
+            <img loading="lazy" src="images/romulus2.JPEG" alt="Romulus">
          </div>
       </article>
 
@@ -415,7 +413,7 @@
                   reasonably fun.
                </p>
                <div class="pics">
-                  <img class="solo" src="images/15-11-26/macon.JPEG" alt="Macintosh is alive!">
+                  <img loading="lazy" class="solo" src="images/15-11-26/macon.JPEG" alt="Macintosh is alive!">
                </div>
                <p>
                   I also grabbed an old Arduino Micro and wired it up to the ADB port, flashed some preexisting firmware 
@@ -439,7 +437,7 @@
                   out the logic board from the back and have a look. 
                </p>
                   <div class="pics">
-                     <img class = "solo" src="images/15-11-26/maclogicboard.JPEG" alt="Macintosh Colour Classic Logic Board">
+                     <img loading="lazy" class = "solo" src="images/15-11-26/maclogicboard.JPEG" alt="Macintosh Colour Classic Logic Board">
                   </div>
                <p>
                   Its in pretty good condition all things considered, no issues with leaking caps like alot of other people. The PRAM battery was completely dead
@@ -534,12 +532,12 @@
          <h2>gallery</h2>
          <p style="text-align:center">random other photos of things. click to enlarge.</p>
          <div class="gallery">
-            <img src="images/brokenregulators.JPEG" alt="Every component I broke while making the mini rover.">
-            <img src="images/footy.JPG" alt="Thought I should showcase my footy skills">
-            <img src="images/grumpt.JPG" alt="Looking lovingly at the rover">
-            <img src="images/smilingpdr.JPG" alt="Sometimes I enjoy myself">
-            <img src="images/drum1.JPEG" alt="Also love playing in bands">
-            <img src="images/drum2.JPEG" alt="I regularly perform at venues around Adelaide">
+            <img loading="lazy" src="images/brokenregulators.JPEG" alt="Every component I broke while making the mini rover.">
+            <img loading="lazy" src="images/footy.JPG" alt="Thought I should showcase my footy skills">
+            <img loading="lazy" src="images/grumpt.JPG" alt="Looking lovingly at the rover">
+            <img loading="lazy" src="images/smilingpdr.JPG" alt="Sometimes I enjoy myself">
+            <img loading="lazy" src="images/drum1.JPEG" alt="Also love playing in bands">
+            <img loading="lazy" src="images/drum2.JPEG" alt="I regularly perform at venues around Adelaide">
          </div>
       </section>
 
@@ -580,12 +578,12 @@
 
    <!-- popup used by the click-to-enlarge photos -->
    <dialog id="viewer">
-      <img id="viewer-img" alt="">
+      <img loading="lazy" id="viewer-img" alt="">
       <p id="viewer-caption"></p>
       <p><button type="button" id="viewer-close">close [esc]</button></p>
    </dialog>
 
-   <script src="site.js?v=3"></script>
+   <script src="site.js?v=4"></script>
 
 </body>
 </html>

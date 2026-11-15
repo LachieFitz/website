@@ -159,7 +159,7 @@ function cloneUpdate(u) {
    var c = u.cloneNode(true);
    c.removeAttribute('id');
    c.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
-   c.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); });
+   c.querySelectorAll('video[autoplay], video[data-autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.removeAttribute('data-autoplay'); });
    return c;
 }
 
@@ -232,8 +232,10 @@ var cards = [];
          }
          card.appendChild(el('strong', null, titleOf(p)));
          if (p.dataset.cardSub) card.appendChild(el('small', null, p.dataset.cardSub));
-         var latest = updatesFor(p.id)[0];
-         if (latest) card.appendChild(el('span', 'last', 'last update: ' + niceDate(latest.dataset.date)));
+         var mine = updatesFor(p.id);
+         // PREVIEW: post count on cards. to pull back, swap the next line for the commented one below it
+         if (mine.length) card.appendChild(el('span', 'last', mine.length + ' update' + (mine.length === 1 ? '' : 's') + ' · last ' + niceDate(mine[0].dataset.date)));
+         // if (mine.length) card.appendChild(el('span', 'last', 'last update: ' + niceDate(mine[0].dataset.date)));
          grid.appendChild(card);
          cards.push(card);
       });
@@ -365,7 +367,7 @@ function route() {
       p.classList.toggle('shown', show);
       p.querySelectorAll('video').forEach(function (v) {
          if (!show) v.pause();
-         else if (v.autoplay) { var pr = v.play(); if (pr) pr.catch(function () {}); }
+         else if (v.autoplay || v.hasAttribute('data-autoplay')) { var pr = v.play(); if (pr) pr.catch(function () {}); }
       });
    });
 
