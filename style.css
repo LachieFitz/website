@@ -1,0 +1,373 @@
+body {
+   background-color: rgb(62, 164, 223);
+   color: white;
+   font-family: monospace;
+   font-size: 16px;
+   margin: 0;
+   padding: 0 16px;
+   line-height: 1.5;
+}
+a { color: yellow; }
+a:visited { color: cornsilk; }
+
+header, main, footer {
+   max-width: 1000px;
+   margin: 0 auto;
+}
+
+header { text-align: center; }
+
+h1, h2, h3 { font-family: 'Times New Roman', Times, serif; font-weight: bold; }
+
+h1 {
+   color: white;
+   font-size: clamp(40px, 10vw, 80px);   /* big, but shrinks on phones */
+   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+   margin: 24px 0 0;
+}
+h1 a, h1 a:visited { color: inherit; text-decoration: none; }
+.tagline {
+   color: cornsilk;
+   font-size: clamp(20px, 4vw, 40px);
+   margin: 0;
+}
+.subtag { color: cornsilk; font-size: 18px; }
+
+.construction {
+   background: repeating-linear-gradient(45deg, yellow 0 20px, black 20px 40px);
+   color: black;
+   font-weight: bold;
+   padding: 4px;
+}
+.construction span { background: yellow; padding: 0 8px; }
+
+/* ---------- tabs ---------- */
+nav {
+   margin: 16px 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 4px 16px;
+}
+nav a { padding: 0 6px; }
+nav a[aria-current="page"],
+nav a[aria-current="page"]:visited {
+   background: yellow;
+   color: black;
+   text-decoration: none;
+   border: 2px inset yellow;
+}
+
+hr { border: 1px solid white; }
+
+h2 {
+   color: cornsilk;
+   font-size: 32px;
+   text-align: center;
+}
+h3 { font-size: 22px; margin-bottom: 0; }
+
+button {
+   font-family: monospace;
+   font-size: 14px;
+   cursor: pointer;
+}
+
+/* ---------- pages: only the one in the URL (#something) is shown ---------- */
+.page { display: none; }
+.page.shown { display: block; }
+.crumb { font-size: 14px; color: cornsilk; margin: 0; }
+
+/* ---------- about ---------- */
+.about { display: flow-root; }
+.about .headshot {
+   width: 520px;
+   max-width: 100%;
+   float: left;
+   margin: 0 24px 16px 0;
+}
+.about > div > p:first-child { margin-top: 0; }
+.about .interests { clear: left; list-style: "- "; }
+
+.about .tags {
+   clear: left;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 6px;
+}
+.about .tags span {
+   flex: 1 1 auto;
+   text-align: center;
+   margin: 0;
+   padding: 4px 8px;
+   font-size: 14px;
+}
+
+/* ---------- "now" box on the home page ---------- */
+.now {
+   border: 3px outset white;
+   background: rgba(0,0,0,0.25);
+   padding: 8px 16px;
+   margin-top: 24px;
+}
+.now h3 { margin-top: 8px; }
+.now ul { list-style: "> "; padding-left: 24px; }
+
+/* ---------- stage badges ---------- */
+.stage {
+   display: inline-block;
+   font-size: 12px;
+   font-weight: bold;
+   padding: 0 6px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   border: 2px outset grey;
+   vertical-align: middle;
+   white-space: nowrap;
+}
+.stage-active      { background: black; color: lime; }
+.stage-active::before { content: "● "; animation: blink 1s steps(1) infinite; }
+.stage-finished    { background: cornsilk; color: black; }
+@keyframes blink { 50% { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .stage-active::before { animation: none; } }
+
+/* ---------- projects board ---------- */
+.filters { text-align: center; margin-bottom: 16px; }
+.filters button.on { background: yellow; }
+
+.board h3 { border-bottom: 2px dashed white; padding-bottom: 4px; margin: 24px 0 12px; }
+.board h3 small { font-family: monospace; font-weight: normal; font-size: 14px; color: cornsilk; }
+
+.grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+   gap: 16px;
+}
+.card {
+   display: block;
+   border: 3px outset white;
+   background: rgba(0,0,0,0.25);
+   padding: 8px;
+   text-decoration: none;
+   color: white !important;
+}
+.card:hover, .card:focus { border-style: inset; background: rgba(0,0,0,0.45); }
+.card img, .card video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.card strong { display: block; font-size: 17px; color: yellow; }
+.card small { color: cornsilk; display: block; }
+.card .last { font-size: 12px; color: cornsilk; opacity: 0.85; }
+.card.hidden { display: none; }
+
+.tags span {
+   display: inline-block;
+   border: 1px solid cornsilk;
+   padding: 0 4px;
+   margin: 2px 2px 0 0;
+   font-size: 12px;
+}
+
+/* ---------- full project pages ---------- */
+.project h2 { margin-bottom: 4px; }
+.project .meta { color: cornsilk; margin-top: 0; text-align: center; }
+.project .pics {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+   gap: 8px;
+}
+.project .pics img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: zoom-in; }
+.project .pics video { width: 100%; aspect-ratio: 1; object-fit: cover; background: black; }
+
+/* class="wide": one photo/video/YouTube that spans the whole row */
+.pics .wide { grid-column: 1 / -1; aspect-ratio: 16 / 9 !important; object-fit: contain; }
+.pics iframe.wide { width: 100%; height: auto; border: 3px inset white; }
+
+/* class="solo": one photo/video on its own, centred, keeps its real shape.
+   works on project pages and in log updates. */
+.project .pics .solo, .pics .solo, .update .solo {
+   grid-column: 1 / -1;
+   justify-self: center;
+   display: block;
+   margin: 8px auto;
+   width: auto;
+   height: auto;
+   max-width: min(100%, 520px);
+   max-height: 520px;
+   aspect-ratio: auto;
+   object-fit: contain;
+}
+
+/* <div class="pair">: two videos/photos side by side, each half the row
+   <div class="trio">: three side by side, each a third of the row
+   both stack on phones */
+.pair, .trio {
+   grid-column: 1 / -1;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 8px;
+   margin-top: 8px;
+}
+.trio { grid-template-columns: 1fr 1fr 1fr; }
+.project .pair > *, .project .trio > * { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: black; }
+.pair img, .trio img { cursor: zoom-in; }
+@media (max-width: 500px) { .pair, .trio { grid-template-columns: 1fr; } }
+.back { font-size: 14px; }
+
+/* ---------- log / updates ---------- */
+.update {
+   border-left: 4px solid yellow;
+   background: rgba(0,0,0,0.2);
+   padding: 4px 12px;
+   margin: 0 0 16px;
+   scroll-margin-top: 16px;
+}
+.update:target, .update.flash { background: rgba(255,255,0,0.18); }
+.update-head { margin: 4px 0; font-size: 14px; color: cornsilk; }
+.update-head time { background: black; color: lime; padding: 0 6px; }
+.update-head a.about { margin-left: 8px; }
+.update-head a.permalink { float: right; text-decoration: none; }
+.update h4 { font-family: 'Times New Roman', Times, serif; font-size: 19px; margin: 4px 0; }
+.update img, .update video { max-width: 100%; max-height: 360px; display: block; margin: 8px 0; cursor: zoom-in; }
+.update.hidden { display: none; }
+.old-update { margin: 0 0 8px; }
+.old-update summary {
+   cursor: pointer;
+   padding: 4px 12px;
+   border-left: 4px solid cornsilk;
+   background: rgba(0,0,0,0.12);
+}
+.old-update summary time { background: black; color: lime; padding: 0 6px; font-size: 14px; }
+.old-update[open] summary { border-left-color: yellow; }
+.old-update .update { margin-top: 4px; }
+/* date + title are already in the fold-up bar, so don't repeat them inside */
+.old-update .update-head time, .old-update .update h4 { display: none; }
+.updates-empty { color: cornsilk; font-style: italic; }
+
+/* ---------- wikilinks + backlinks ---------- */
+a.wikilink { text-decoration-style: dotted; }
+a.wikilink::before { content: "["; opacity: 0.55; }
+a.wikilink::after  { content: "]"; opacity: 0.55; }
+a.wikilink.missing, a.wikilink.missing:visited { color: #ffb3b3; text-decoration-style: dashed; }
+
+.backlinks {
+   margin-top: 32px;
+   border: 2px dashed cornsilk;
+   padding: 4px 12px;
+   font-size: 14px;
+}
+.backlinks h4 { margin: 4px 0; color: cornsilk; }
+.backlinks ul { margin: 4px 0; padding-left: 20px; list-style: "↖ "; }
+
+.garden { columns: 2 220px; }
+.garden li { break-inside: avoid; }
+
+/* ---------- gallery ---------- */
+.gallery {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+   gap: 8px;
+}
+.gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: zoom-in; }
+
+/* when a photo is missing, show where it should go */
+.missing {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   border: 2px dashed cornsilk;
+   color: cornsilk;
+   font-size: 12px;
+   padding: 4px;
+   aspect-ratio: 4 / 3;
+   word-break: break-all;
+}
+
+/* ---------- click-to-enlarge popup ---------- */
+dialog {
+   background: black;
+   color: white;
+   border: 3px outset white;
+   max-width: 95vw;
+   padding: 8px;
+}
+dialog::backdrop { background: rgba(0,0,0,0.8); }
+dialog img { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+dialog p { text-align: center; margin: 8px 0 0; }
+
+/* ---------- footer ---------- */
+footer {
+   text-align: center;
+   padding: 24px 0 48px;
+   font-size: 14px;
+}
+.counter {
+   display: inline-block;
+   background: black;
+   color: lime;
+   padding: 2px 8px;
+   letter-spacing: 3px;
+   border: 2px inset grey;
+}
+
+/* ---------- WOLFRAM SIDES: cellular automata printing down the empty side margins ---------- */
+.automaton {
+   position: fixed;
+   top: 0;
+   z-index: -1;
+   image-rendering: pixelated;   /* keep the cells as crisp chunky squares */
+   pointer-events: none;
+}
+#ca-left { left: 0; }
+#ca-right { right: 0; }
+/* little label saying which rule is currently drawing */
+#rule-label {
+   position: fixed;
+   left: 8px;
+   bottom: 8px;
+   background: black;
+   color: lime;
+   padding: 2px 8px;
+   font-size: 12px;
+   border: 2px inset grey;
+   text-decoration: none;
+}
+#rule-label:hover { color: yellow; }
+body.employer .automaton, body.employer #rule-label { display: none; }
+
+/* ---------- EMPLOYER MODE: what it looks like if I tried ---------- */
+body.employer {
+   background: #f7f7f5;
+   color: #222;
+   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+body.employer h1 { color: #111; text-shadow: none; }
+body.employer h1, body.employer h2, body.employer h3, body.employer .update h4 { font-family: inherit; }
+body.employer .tagline, body.employer .subtag, body.employer h2, body.employer .crumb,
+body.employer .card small, body.employer .card .last, body.employer .project .meta,
+body.employer .update-head, body.employer .backlinks h4, body.employer .board h3 small { color: #555; }
+body.employer a, body.employer a:visited { color: #6a0dad; }
+body.employer a.wikilink.missing { color: #b04040; }
+body.employer nav a[aria-current="page"] { background: #6a0dad; color: white; border: 0; border-radius: 4px; }
+body.employer hr { border: 0; border-top: 1px solid #ddd; }
+body.employer .construction { display: none; }
+body.employer .card, body.employer .now {
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   background: white;
+   color: #222 !important;
+   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+body.employer .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+body.employer .card strong { color: #222; }
+body.employer .tags span { border-color: #ccc; border-radius: 4px; color: #555; }
+body.employer .board h3 { border-bottom: 1px solid #ddd; }
+body.employer .update { background: white; border-left-color: #6a0dad; border-radius: 0 6px 6px 0; }
+body.employer .update-head time { background: none; color: #555; padding: 0; }
+body.employer .old-update summary { background: white; border-left-color: #ccc; }
+body.employer .old-update summary time { background: none; color: #555; padding: 0; }
+body.employer .backlinks { border: 1px solid #ddd; border-radius: 6px; background: white; }
+body.employer .stage { border: 0; border-radius: 4px; }
+body.employer .stage-active { background: #e3f6e3; color: #1b6e1b; }
+body.employer .stage-finished { background: #ece6f5; color: #4b2a7a; }
+body.employer .missing { border-color: #bbb; color: #888; }
+body.employer .counter { display: none; }
