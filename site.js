@@ -135,6 +135,23 @@ main.querySelectorAll('a[href^="#"]').forEach(function (a) {
    });
 });
 
+// links + docs box: takes the page's hand-written <ul class="link-list"> (wherever it
+// sits in the html) and puts it in a box at the bottom, styled like "linked from"
+function linkListBox(page) {
+   var list = page.querySelector('ul.link-list');
+   if (!list && !page.classList.contains('project')) return null;
+   var box = el('aside', 'backlinks link-box');
+   box.appendChild(el('h4', null, 'links + docs'));
+   if (list && list.querySelector('li')) {
+      list.querySelectorAll('a[href^="http"]').forEach(function (a) { a.target = '_blank'; a.rel = 'noopener'; });
+      box.appendChild(list);
+   } else {
+      if (list) list.remove();
+      box.appendChild(el('p', 'updates-empty', 'no links added yet.'));
+   }
+   return box;
+}
+
 function backlinkBox(id) {
    var box = el('aside', 'backlinks');
    box.appendChild(el('h4', null, 'linked from'));
@@ -193,6 +210,8 @@ pages.filter(function (p) { return p.classList.contains('project') || p.classLis
          });
          p.appendChild(sec);
       }
+      var links = linkListBox(p);
+      if (links) p.appendChild(links);
       p.appendChild(backlinkBox(p.id));
       if (p.classList.contains('project')) {
          var back = el('p', 'back');

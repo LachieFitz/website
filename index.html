@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Lachie Fitzgibbon - Mechatronics + Physics</title>
    <meta name="description" content="lachiefitzgibbles">
-   <link rel="stylesheet" href="style.css?v=4">
+   <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <!--
@@ -25,6 +25,11 @@
        the card on the projects tab, the stage badge, the updates list and the "linked from"
        box are all made automatically.
 
+   LINKS + DOCS: each project has a <ul class="link-list"> near the bottom. add one <li> per link:
+          <li><a href="https://...">short name</a> what it is / why it's useful</li>
+       it gets moved to the bottom of the page into a box above "linked from".
+       works on wiki notes too if you add a link-list to one.
+
    NEW UPDATE: add an <article class="update"> at the top of the LOG section:
           data-date  = YYYY-MM-DD  (they get sorted by this, newest first)
           data-about = the id of the project/note it's about (optional). can be several,
@@ -36,7 +41,7 @@
        if a page with that id exists it becomes a link. if it doesn't, it becomes a pinkish
        "not written yet" link and gets listed under "wanted pages" on the wiki tab.
 
-   CHANGED style.css or site.js? bump the ?v=4 numbers in the <head> and at the bottom
+   CHANGED style.css or site.js? bump the ?v=5 numbers in the <head> and at the bottom
        so browsers grab the new version instead of an old saved copy.
 
    PHOTOS: <img loading="lazy" src="..." alt="caption">  (lazy = only downloads when its page is opened)
@@ -137,9 +142,17 @@
          data-title="Technical Director" data-stage="active" data-updates="off"
          data-skills="leadership electrical mechanical software"
          data-card-img="images/aura.JPG" data-card-sub="Adelaide Rover Team, Yr 3">
-         <p class="crumb"><a href="#projects">projects</a> /</p>
-         <h2>Technical Director (Rover, Yr 3)</h2>
-         <p class="meta">2026-2027 · [[rover-team|Adelaide University Rover Team]]</p>
+         <header class="project-head">
+            <p class="crumb"><a href="#projects">projects</a> /</p>
+            <div class="project-title">
+               <h2>Technical Director (Rover, Yr 3)</h2>
+               <p class="meta">2026-2027 · [[rover-team|Adelaide University Rover Team]]</p>
+            </div>
+            <div class="status">
+               <span class="status-label">status</span> <time datetime="2026-11-16">16 Nov 2026</time>
+               <p>Out of prototyping stage, manufacturing underway, big summer push about to start.</p>
+            </div>
+         </header>
          <p>
             Managed 41 technical members and the 3 discipline leads (software, electrical,
             mechanical). Responsible for the technical development of every subsystem, including
@@ -177,38 +190,45 @@
             <video src="images/15-11-26/armtest1.MP4" controls preload="metadata" playsinline title="Beginning of arm physical testing"></video>
             <video src="images/15-11-26/armwhine.MP4" controls preload="metadata" playsinline title="The tuning was not correct here and for you sake I hope the audio is muted for this."></video>
          </div>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
       <article class="page project" id="macintosh"
          data-title="Macintosh Colour Classic" data-stage="active"
          data-skills="electrical"
          data-card-img="images/15-11-26/macon.JPEG" data-card-sub="ideating">
-         <p class="crumb"><a href="#projects">projects</a> /</p>
-         <h2>Macintosh Colour Classic</h2>
-         <p class="meta">2026 · Personal Project</p>
+         <header class="project-head">
+            <p class="crumb"><a href="#projects">projects</a> /</p>
+            <div class="project-title">
+               <h2>Macintosh Colour Classic</h2>
+               <p class="meta">2026 · Personal Project</p>
+            </div>
+            <div class="status">
+               <span class="status-label">status</span> <time datetime="2026-11-15">15 Nov 2026</time>
+               <ul>
+                  <li>Mac turns on, needs an OS installed. Ideating next fun things to do.</li>
+                  <li>ADB-USB keyboard converter works (prototype on an Arduino Micro).</li>
+               </ul>
+            </div>
+         </header>
          <p>
-            Have had this old Macintosh computer in my cupboard for almost 2 years. Finally returned to it to see 
-            whether I can bring it back to life and what other fun things can be done with it.
-            Currently turns on, needs OS installed and ideating next fun things to do.
+            Have had this old Macintosh computer in my cupboard for almost 2 years. Replacement PRAM battery allowed it 
+            to turn back on which allows alot more fun things to be done.
          </p>
          <div class="pics">
             <img loading="lazy" src="images/15-11-26/macon.JPEG" alt="Macintosh Colour Classic (1993)">
             <img loading="lazy" src="images/15-11-26/maclogicboard.JPEG" alt="Macintosh logic board">  
             <img loading="lazy" src="images/15-11-26/macsetup.JPEG" alt="Obviously needs the keyboard connected for soft-power start."> 
          </div>
-      </article>
 
-      <article class="page project" id="adb"
-         data-title="USB-ADB converter" data-stage="active"
-         data-skills="electrical"
-         data-card-img="images/15-11-26/adbkeyboard.JPEG" data-card-sub="prototyped">
-         <p class="crumb"><a href="#projects">projects</a> /</p>
-         <h2>USB-ADB converter</h2>
-         <p class="meta">2026 · Personal Project</p>
+         <h3>USB-ADB keyboard converter</h3>
          <p>
             I have always loved the feel of the classic macintosh keyboard and the only thing stopping me from using it every day is the 
             stupid ADB (Apple Desktop Bus). Luckily someone very kind has written firmware support for translating keyboard singlas from ADB to USB.
-            Currently running this firmware on an Arduino Micro.
+            Running this firmware on an Arduino Micro.
          </p>
          <!-- TODO: circuit diagram here. its dead simple tho. -->
          <div class="pics">
@@ -216,24 +236,47 @@
             <img loading="lazy" src="images/15-11-26/keyboardwiring.JPEG" alt="wiring is kinda jank">
             <video src="images/15-11-26/typing.MP4" controls preload="metadata" playsinline title="look it works"></video>
          </div>
+
+         <ul class="link-list">
+            <li><a href="https://www.macintoshrepository.org/32796-system-7-5-3">Macintosh Repository: System 7.5.3</a>
+               downloads of old operating systems. 7.5.3 is recommended as running best on this hardware.</li>
+            <li><a href="https://retrotechwiki.com/Macintosh_Color_Classic_Troubleshooting">RetroTechWiki: Macintosh Colour Classic Troubleshooting</a>
+               Really helpful guide of common problems with this model of Macintosh.</li>
+            <li><a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards/converter/adb_usb">QMK fimware repoistory</a> 
+               Community firmware for running ADB-USB converter on modern microcontrollers.</li> 
+         </ul>
       </article>
 
       <article class="page project" id="omnichord"
          data-title="Omnichord Repair" data-stage="active"
          data-skills="electrical"
          data-card-img="images/omnichords/omniwhole.JPEG" data-card-sub="analogue electronics may defeat me">
-         <p class="crumb"><a href="#projects">projects</a> /</p>
-         <h2>Omnichord Repair</h2>
-         <p class="meta">2026 · Personal Project</p>
+         <header class="project-head">
+            <p class="crumb"><a href="#projects">projects</a> /</p>
+            <div class="project-title">
+               <h2>Omnichord Repair</h2>
+               <p class="meta">2026 · Personal Project</p>
+            </div>
+            <div class="status">
+               <span class="status-label">status</span> <time datetime="2026-11-16">16 Nov 2026</time>
+               <p>Signals are there, just not being amplified. I may have fried the power input tho :/</p>
+            </div>
+         </header>
          <p>
             Repairing a 1984 OM36 Omnichord system 1 for my sisters boyfriend. Analogue electronics are fun but I may have broken it.
-            Currently, signals are there - just not being amplified. I may have fried the power input tho :/.
          </p>
          <div class="pics">
             <img loading="lazy" src="images/omnichords/omniwhole.JPEG" alt="Omnichord internals">
             <img loading="lazy" src="images/omnichords/omniboard.JPEG" alt="Omnichord analogue signal board">
             <video src="images/omnichords/omnisignal.MP4" controls preload="metadata" playsinline title="Omnichord signals do exist in the system just not playing out loud :/."></video>
          </div>
+
+         <ul class="link-list">
+            <li><a href="https://www.omnichord-heaven.com/">Omnichord Heaven</a> 
+               Community Website for Omnichords</li> 
+            <li><a href="images/omnichord84_schematic.jpg">OM-84 Referance Schematic</a> 
+               Circuit schematic for the Omnichord 86, useful for referance and seems mostly similar to the OM32</li>
+         </ul>
       </article>
 
 
@@ -255,6 +298,10 @@
          <div class="pics">
             <img loading="lazy" src="images/urdf.png" alt="Inventor model with the UCS created for the URDF export.">
          </div>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
       <article class="page project" id="clock"
@@ -276,6 +323,10 @@
             <img loading="lazy" src="images/locationcode.JPEG" alt="Software successes.">
          </div>
          <p>Code: <a href="https://github.com/LachieFitz/location_clock">GitHub repo</a></p>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
       <article class="page project" id="gripper"
@@ -323,6 +374,10 @@
             <img loading="lazy" src="images/mini+heather.JPG" alt="Mini rover turning on for the first time">
             <img loading="lazy" src="images/soldermini.JPEG" alt="Soldering in high pressure environments">
          </div>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
       <article class="page project" id="warman"
@@ -362,6 +417,10 @@
             <video src="images/jankefirstdrive-web.mp4" controls preload="metadata" title="JANK-E's first drive"></video>
             <video src="images/janke-perfectrun1-web.mp4" controls preload="metadata" title="Perfect run"></video>
          </div>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
       <article class="page project" id="differential"
@@ -389,6 +448,10 @@
             <img loading="lazy" src="images/romulus.JPEG" alt="The first rover iteration I got to work on">
             <img loading="lazy" src="images/romulus2.JPEG" alt="Romulus">
          </div>
+
+         <ul class="link-list">
+            <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
+         </ul>
       </article>
 
 
@@ -402,7 +465,7 @@
 
          <div id="updates">
             <!-- NEW UPDATES GO HERE. order doesn't matter, they get sorted by data-date. -->
-            <article class="update" data-date="2026-11-15" data-about="macintosh adb">
+            <article class="update" data-date="2026-11-15" data-about="macintosh">
                <h4>Its alive</h4>
                <p>
                   Still really dont wanna study for EM exam. Amazon prime is a marvel of modern infrastructure; new battery already arrived. Put it in and 
@@ -484,6 +547,15 @@
 
       <!-- ---------- individual wiki notes ---------- -->
 
+      <section class="page note" id="ai" data-title="AI">
+         <p class="crumb"><a href="#wiki">wiki</a> /</p>
+         <h2>AI</h2>
+         <p>
+            note: if AI was actual intelligence instead of mimicing intelligence it wouldn't use larp phrases
+            like 'cogitating' or 'quantumising'.
+         </p>
+      </section>
+
       <section class="page note" id="rover-team" data-title="Adelaide University Rover Team">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>Adelaide University Rover Team</h2>
@@ -507,7 +579,7 @@
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>Cellular Automata</h2>
          <p>
-            The things drawing themselves down the sides of this website are called cellular automata. 
+            The things drawing themselves down the sides of this website are called cellular automata (unless you are in boring mode). 
             All they are is a binary coloured cell that is defined by a simple pattern relating it to the colour of 
             the cells above it. These rules have been numbered from 0-255 and some produce continouosly evolving patterns. Whilst many people 
             smarter then me agree on it, I really struggle to believe that systems with rules as simple as these can be computationally irreducible.
@@ -583,7 +655,7 @@
       <p><button type="button" id="viewer-close">close [esc]</button></p>
    </dialog>
 
-   <script src="site.js?v=4"></script>
+   <script src="site.js?v=5"></script>
 
 </body>
 </html>

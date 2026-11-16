@@ -113,6 +113,41 @@ button {
 .now h3 { margin-top: 8px; }
 .now ul { list-style: "> "; padding-left: 24px; }
 
+/* ---------- per-project status box (the bit that changes) ---------- */
+/* title centred in the middle column; equal side columns keep it truly centred,
+   status box lives in the right one. Body text starts below the whole header. */
+.project-head {
+   display: grid;
+   grid-template-columns: 1fr auto 1fr;
+   grid-template-areas: "crumb crumb crumb" ". title status";
+   align-items: start;
+   column-gap: 16px;
+   margin-bottom: 12px;
+}
+.project-head .crumb { grid-area: crumb; }
+.project-head .project-title { grid-area: title; }
+.project-head .status { grid-area: status; justify-self: end; }
+@media (max-width: 700px) {
+   .project-head { grid-template-columns: 1fr; grid-template-areas: "crumb" "title" "status"; }
+   .project-head .status { justify-self: stretch; width: auto; }
+}
+
+.status {
+   width: 240px;
+   margin: 8px 0 0;
+   border: 3px inset white;
+   background: black;
+   color: lime;
+   font-family: monospace;
+   font-size: 13px;
+   padding: 6px 10px;
+}
+.status-label { text-transform: uppercase; font-weight: bold; }
+.status-label::before { content: "● "; animation: blink 1s steps(1) infinite; }
+.status time { float: right; color: cornsilk; }
+.status p { margin: 6px 0; }
+.status ul { list-style: "> "; padding-left: 18px; margin: 6px 0; }
+
 /* ---------- stage badges ---------- */
 .stage {
    display: inline-block;
@@ -129,7 +164,7 @@ button {
 .stage-active::before { content: "● "; animation: blink 1s steps(1) infinite; }
 .stage-finished    { background: cornsilk; color: black; }
 @keyframes blink { 50% { visibility: hidden; } }
-@media (prefers-reduced-motion: reduce) { .stage-active::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .stage-active::before, .status-label::before { animation: none; } }
 
 /* ---------- projects board ---------- */
 .filters { text-align: center; margin-bottom: 16px; }
@@ -256,6 +291,10 @@ a.wikilink.missing, a.wikilink.missing:visited { color: #ffb3b3; text-decoration
 }
 .backlinks h4 { margin: 4px 0; color: cornsilk; }
 .backlinks ul { margin: 4px 0; padding-left: 20px; list-style: "↖ "; }
+.link-box ul { list-style: "↗ "; }
+.link-box li { margin: 4px 0; }
+.link-box li a { margin-right: 6px; }
+.link-box + .backlinks { margin-top: 12px; }
 
 .garden { columns: 2 220px; }
 .garden li { break-inside: avoid; }
@@ -371,3 +410,7 @@ body.employer .stage-active { background: #e3f6e3; color: #1b6e1b; }
 body.employer .stage-finished { background: #ece6f5; color: #4b2a7a; }
 body.employer .missing { border-color: #bbb; color: #888; }
 body.employer .counter { display: none; }
+body.employer .status { border: 1px solid #ddd; border-left: 4px solid #1b6e1b; border-radius: 0 6px 6px 0; background: #f3faf3; color: #222; font-family: inherit; }
+body.employer .status-label { color: #1b6e1b; }
+body.employer .status-label::before { animation: none; }
+body.employer .status time { color: #555; }
