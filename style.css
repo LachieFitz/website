@@ -298,6 +298,7 @@ a.wikilink.missing, a.wikilink.missing:visited { color: #ffb3b3; text-decoration
 
 .garden { columns: 2 220px; }
 .garden li { break-inside: avoid; }
+.book-meta { opacity: .7; margin-top: -6px; }
 
 /* ---------- gallery ---------- */
 .gallery {

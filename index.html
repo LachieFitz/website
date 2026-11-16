@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Lachie Fitzgibbon - Mechatronics + Physics</title>
    <meta name="description" content="lachiefitzgibbles">
-   <link rel="stylesheet" href="style.css?v=5">
+   <link rel="stylesheet" href="style.css?v=6">
 </head>
 
 <!--
@@ -41,7 +41,7 @@
        if a page with that id exists it becomes a link. if it doesn't, it becomes a pinkish
        "not written yet" link and gets listed under "wanted pages" on the wiki tab.
 
-   CHANGED style.css or site.js? bump the ?v=5 numbers in the <head> and at the bottom
+   CHANGED style.css or site.js? bump the ?v=6 numbers in the <head> and at the bottom
        so browsers grab the new version instead of an old saved copy.
 
    PHOTOS: <img loading="lazy" src="..." alt="caption">  (lazy = only downloads when its page is opened)
@@ -49,6 +49,11 @@
            looping silent clip: <video src="..." data-autoplay muted loop playsinline preload="none"></video>
 
    NEW WIKI NOTE: copy one of the <section class="page note"> blocks in the WIKI part.
+
+   LIBRARY: don't edit between the PEMBERLEY:LIBRARY markers. it's made from books.csv by
+          the "Publish to website" button in pemberley (or python3 ../pemberley/publish.py).
+          book notes are wiki notes with class "book": they work with [[wikilinks]] and
+          "linked from" like any other note, but only show on the library page, not the wiki list.
    ===================================================================
 -->
 
@@ -575,9 +580,20 @@
             
             
          </p>
-         <a href="https://www.geeksforgeeks.org/websites-apps/what-is-a-web-server-working-and-architecture/">What is a webserver?</a>
+         <a href="https://www.geeksforgeeks.org/websites-apps/what-is-a-web-server-working-and-architecture/">What is a web server?</a>
          <p></p>
          <a href="https://httpd.apache.org/ABOUT_APACHE.html">Apache HTTP Server Project</a>
+      </section>
+
+      <section class="page note" id="ideas" data-title="Project Ideas">
+         <p class="crumb"><a href="#wiki">wiki</a> /</p>
+         <h2>Project Ideas</h2>
+         <p>
+            - Pihole (obvi)
+         </p>
+         <p>- Desktop Arm (eventually eventuall)</p>
+         <p>- Some form of sports predictor for pytorch/NN practice. Anything with large amounts of public data really.</p>
+         <p>- Whatever mods i end up doing with the MAC</p>
       </section>
 
       <section class="page note" id="cellular-automata" data-title="Cellular Automata">
@@ -600,6 +616,24 @@
             of the world wide web.
          </p>
       </section>
+
+
+      <!-- PEMBERLEY:LIBRARY START (made by pemberley/publish.py, edits in here get overwritten) -->
+      <section class="page note" id="library" data-title="Library">
+         <p class="crumb"><a href="#wiki">wiki</a> /</p>
+         <h2>Library</h2>
+         <p>A selection of my favourite books that I have read aswell as some I want to read.</p>
+         <h3>read</h3>
+         <ul class="garden">
+            <li>The Time Travellers Wife · Audrey Niffenegger ★★★★★</li>
+            <li>One Day · David Nicholls ★★★★★</li>
+            <li>On Chesil Beach · Ian McEwan ★★★★★</li>
+            <li>The Minds Past · Michael Gazzaniga ★★★★★</li>
+            <li>Doing Good Better · William MacAskill ★★★★★</li>
+            <li>Sapiens · Yuval Noah Harari ★★★★★</li>
+         </ul>
+      </section>
+      <!-- PEMBERLEY:LIBRARY END -->
 
 
       <!-- ===================================================== -->
@@ -660,7 +694,7 @@
       <p><button type="button" id="viewer-close">close [esc]</button></p>
    </dialog>
 
-   <script src="site.js?v=5"></script>
+   <script src="site.js?v=6"></script>
 
 </body>
 </html>

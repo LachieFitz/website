@@ -343,7 +343,7 @@ var cards = [];
       });
       if (!items.length) ul.appendChild(el('li', 'updates-empty', 'none!'));
    }
-   fill('garden-notes', notes.filter(function (n) { return SKIP_IN_GARDEN.indexOf(n.id) === -1; })
+   fill('garden-notes', notes.filter(function (n) { return SKIP_IN_GARDEN.indexOf(n.id) === -1 && !n.classList.contains('book'); })
       .map(function (n) { return { id: n.id, text: titleOf(n) }; }));
    fill('garden-projects', projects.map(function (p) {
       var extra = document.createDocumentFragment();
