@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Lachie Fitzgibbon - Mechatronics + Physics</title>
    <meta name="description" content="lachiefitzgibbles">
-   <link rel="stylesheet" href="style.css?v=6">
+   <link rel="stylesheet" href="style.css?v=7">
 </head>
 
 <!--
@@ -41,7 +41,7 @@
        if a page with that id exists it becomes a link. if it doesn't, it becomes a pinkish
        "not written yet" link and gets listed under "wanted pages" on the wiki tab.
 
-   CHANGED style.css or site.js? bump the ?v=6 numbers in the <head> and at the bottom
+   CHANGED style.css or site.js? bump the ?v=7 numbers in the <head> and at the bottom
        so browsers grab the new version instead of an old saved copy.
 
    PHOTOS: <img loading="lazy" src="..." alt="caption">  (lazy = only downloads when its page is opened)
@@ -49,6 +49,8 @@
            looping silent clip: <video src="..." data-autoplay muted loop playsinline preload="none"></video>
 
    NEW WIKI NOTE: copy one of the <section class="page note"> blocks in the WIKI part.
+       add data-highlight to its <section> to list it under "highlighted pages" on the wiki tab.
+       without it the note is only reachable through links.
 
    LIBRARY: don't edit between the PEMBERLEY:LIBRARY markers. it's made from books.csv by
           the "Publish to website" button in pemberley (or python3 ../pemberley/publish.py).
@@ -200,6 +202,46 @@
             <!-- <li><a href="URL">name</a> what it is / why it's useful</li> -->
          </ul>
       </article>
+
+      <article class="page project" id="hexapod"
+         data-title="Hexapod Research" data-stage="active"
+         data-skills="electrical software research"
+         data-card-img="images/" data-card-sub="Making a spider robot walk">
+         <header class="project-head">
+            <p class="crumb"><a href="#projects">projects</a> /</p>
+            <div class="project-title">
+               <h2>Hexapod Locomation Research</h2>
+               <p class="meta">2026 · Research Scholarship</p>
+            </div>
+            <div class="status">
+               <span class="status-label">status</span> <time datetime="2026-11-16">17 Nov 2026</time>
+               <p>Accepted into scholarship, starting work in December!</p>
+            </div>
+         </header>
+         <p>
+            I was accepted into the Adelaide University Summer Research Scholarship, where I will be working under APrf David Harvey in the
+            Space Robtics Lab (SPIRAL). The focus of the research will be improving on the locomation and gait control previously developed for 
+            the 2023 honours project Arachnida, which is a semi-autonomous hexapod for cave exploration and mapping. The previous team 
+          utilised the open-SHC heaxpod 
+            gait software from CSIRO, and implemented (among other things) on an energy-based gait controller which switches the gait of the robot 
+            depending on power consumption (which gives information about the difficulty of terrain). I will be (hopefully), spend my first few weeks 
+            gaining familiarity with the system, and performing a small literature review; this will be followed by the Christmas break which I will try and use 
+            to finish setting up a quality simulation. The data of this simulation will then allow me to inform, experimental design to be able to quantify the 
+            effectiveness of different gait patterns/parameters.
+         </p>
+         <div class="pics">
+            
+         </div>
+
+         <ul class="link-list">
+            <li><a href=""></a> 
+            </li> 
+            <li><a href="images/"></a> 
+               </li>
+         </ul>
+      </article>
+
+      
 
       <article class="page project" id="macintosh"
          data-title="Macintosh Colour Classic" data-stage="active"
@@ -541,7 +583,7 @@
          <p style="text-align:center">
             notes on things i keep coming back to. everything on this site links to everything else with [[wikilinks]].
          </p>
-         <h3>notes</h3>
+         <h3>highlighted pages</h3>
          <ul class="garden" id="garden-notes"></ul>
          <h3>projects</h3>
          <ul class="garden" id="garden-projects"></ul>
@@ -552,6 +594,50 @@
 
       <!-- ---------- individual wiki notes ---------- -->
 
+      <section class="page note" id="robot" data-highlight data-title="Robots">
+         <p class="crumb"><a href="#robot">robot</a> /</p>
+         <h2>Robots</h2>
+         <p>
+            A robot is a some form of mechanised system (usually programable) that is capable of performing an automatic function.
+         </p>
+         <ul>
+            <li>[[Communication Protocols | Communication Protocols]]</li>
+            <li>[[Motors | Motors]]</li>
+         </ul>
+      </section>
+
+      <section class="page note" id="communication-protocols" data-title="Comunication Protocols">
+         <p class="crumb"><a href="#communication-protocols">robot</a> /</p>
+         <h2>Communication Protocols</h2>
+         <p>
+            There are various pre-estabilished methods of communication used in robotics and wider industry. There are different
+            benefits to each and the software and electrical setup can greatly impact your choice.
+         </p>
+         <ul>
+            <li>CAN (Controller Area Network)</li>
+            <li>UART (Universal Asynchronous Reciever-Transmitter)</li>
+            <li>SPI (Serial Peripheral Interface)</li>
+            <li>I2C (Inter-intergrated Circuit)</li>
+         </ul>
+      </section>
+
+      <section class="page note" id="motors" data-title="Motors">
+         <p class="crumb"><a href="#motors">robot</a> /</p>
+         <h2>Motors</h2>
+         <p>
+            Motors are mechanisms capable of producing a mechanical torque controlled by an electrical signal. This is traditionally done 
+            by leveraging the electromagnetic effect of a moving current inducing a magnetic field and generating a torque. Note: this effect 
+            is the inverse of a generator or dynamo.
+         </p>
+         <ul>
+            <li>Servo</li>
+            <li>Stepper</li>
+            <li>Brushed DC Motor</li>
+            <li>Brushless DC Motor</li>
+            <li>3-Phase Motor</li>
+         </ul>
+      </section>
+
       <section class="page note" id="ai" data-title="AI">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>AI</h2>
@@ -561,7 +647,7 @@
          </p>
       </section>
 
-      <section class="page note" id="rover-team" data-title="Adelaide University Rover Team">
+      <section class="page note" id="rover-team" data-highlight data-title="Adelaide University Rover Team">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>Adelaide University Rover Team</h2>
          <p>
@@ -585,7 +671,7 @@
          <a href="https://httpd.apache.org/ABOUT_APACHE.html">Apache HTTP Server Project</a>
       </section>
 
-      <section class="page note" id="ideas" data-title="Project Ideas">
+      <section class="page note" id="ideas" data-highlight data-title="Project Ideas">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>Project Ideas</h2>
          <p>
@@ -594,9 +680,10 @@
          <p>- Desktop Arm (eventually eventuall)</p>
          <p>- Some form of sports predictor for pytorch/NN practice. Anything with large amounts of public data really.</p>
          <p>- Whatever mods i end up doing with the MAC</p>
+         <p>[[webserver | webserver]]</P>
       </section>
 
-      <section class="page note" id="cellular-automata" data-title="Cellular Automata">
+      <section class="page note" id="cellular-automata" data-highlight data-title="Cellular Automata">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
          <h2>Cellular Automata</h2>
          <p>
@@ -607,6 +694,7 @@
             Working out how to solve/predict them seems to be at the very limits of what is considered to be a solvable problem yet so has every great advancement. 
             See: p=np problem, turing machines (rule 110 is turing complete fun fact), goedels incompleteness theorem, conways game of life.
       </section>
+
 
       <section class="page note" id="wikilinks" data-title="wikilinks">
          <p class="crumb"><a href="#wiki">wiki</a> /</p>
@@ -625,10 +713,10 @@
          <p>A selection of my favourite books that I have read aswell as some I want to read.</p>
          <h3>read</h3>
          <ul class="garden">
-            <li>The Time Travellers Wife · Audrey Niffenegger ★★★★★</li>
             <li>One Day · David Nicholls ★★★★★</li>
             <li>On Chesil Beach · Ian McEwan ★★★★★</li>
             <li>The Minds Past · Michael Gazzaniga ★★★★★</li>
+            <li>The Life You Can Save · Peter Singer ★★★★★</li>
             <li>Doing Good Better · William MacAskill ★★★★★</li>
             <li>Sapiens · Yuval Noah Harari ★★★★★</li>
          </ul>
@@ -694,7 +782,7 @@
       <p><button type="button" id="viewer-close">close [esc]</button></p>
    </dialog>
 
-   <script src="site.js?v=6"></script>
+   <script src="site.js?v=7"></script>
 
 </body>
 </html>

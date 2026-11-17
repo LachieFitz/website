@@ -12,7 +12,6 @@ var main = document.querySelector('main');
 var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
 var projects = pages.filter(function (p) { return p.classList.contains('project'); });
 var notes = pages.filter(function (p) { return p.classList.contains('note'); });
-var SKIP_IN_GARDEN = ['not-written'];
 
 function $(id) { return document.getElementById(id); }
 function el(tag, cls, text) {
@@ -327,7 +326,7 @@ var cards = [];
 })();
 
 // ---------------------------------------------------------------
-// 7. wiki index: every note, every project, and every [[link]] that has no page yet
+// 7. wiki index: highlighted notes, every project, and every [[link]] that has no page yet
 // ---------------------------------------------------------------
 (function () {
    function fill(listId, items) {
@@ -343,7 +342,7 @@ var cards = [];
       });
       if (!items.length) ul.appendChild(el('li', 'updates-empty', 'none!'));
    }
-   fill('garden-notes', notes.filter(function (n) { return SKIP_IN_GARDEN.indexOf(n.id) === -1 && !n.classList.contains('book'); })
+   fill('garden-notes', notes.filter(function (n) { return n.hasAttribute('data-highlight'); })
       .map(function (n) { return { id: n.id, text: titleOf(n) }; }));
    fill('garden-projects', projects.map(function (p) {
       var extra = document.createDocumentFragment();
